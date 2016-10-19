@@ -257,7 +257,7 @@ C
         IF(APDOT .EQ. 0.0E0) RETURN
         ALFA = RKDOT/APDOT
       else
-        if (dummy . or. APDOT == 0.0E0) then
+        if (dummy .or. APDOT == 0.0E0) then
           dummy = .true.
           ALFA = 0.0
         else
