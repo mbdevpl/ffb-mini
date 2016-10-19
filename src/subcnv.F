@@ -12,7 +12,7 @@ C
 C
       DO 1000 ILST=1,NLST
          I=LLST(ILST)
-         IF (I.LT.1.OR.I.GT.N) GOTO 9999
+         IF (I.LT.1 .OR.I.GT.N) GOTO 9999
          LLST(ILST)=LCNV(I)
  1000 CONTINUE
 C
@@ -44,7 +44,7 @@ C
 C
       DO 2000 IR=1,NR
          I=LCNV(IR)
-         IF(I.LT.1.OR.I.GT.N) GOTO 9999
+         IF(I.LT.1 .OR.I.GT.N) GOTO 9999
          ADATA(I)=AWORK(IR)
  2000 CONTINUE
 C
@@ -76,7 +76,7 @@ C
 C
       DO 2000 IR=1,NR
          I=LCNV(IR)
-         IF(I.LT.1.OR.I.GT.N) GOTO 9999
+         IF(I.LT.1 .OR.I.GT.N) GOTO 9999
          ADATA(I)=AWORK(IR)
  2000 CONTINUE
 C
@@ -110,12 +110,12 @@ C
 C
       DO 2000 IE=1,NE
          IEC=LECNV(IE)
-         IF(IEC.LT.1.OR.IEC.GT.NE) GOTO 9999
+         IF(IEC.LT.1 .OR.IEC.GT.NE) GOTO 9999
          DO 2100 I=1,8
             IP=NODE(I,IE)
             IF (IP.EQ.0) GOTO 2100
             IPC=LPCNV(IP)
-            IF(IPC.LT.1.OR.IPC.GT.NP) GOTO 9999
+            IF(IPC.LT.1 .OR.IPC.GT.NP) GOTO 9999
             NODWK1(I,IEC)=IPC
  2100    CONTINUE
  2000 CONTINUE

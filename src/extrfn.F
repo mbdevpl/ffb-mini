@@ -116,7 +116,7 @@ CC
          IF(LERFN(IE).EQ.0) GOTO 3000
          NE1=NE1+1
 C
-         IF(NODE(6,IE).EQ.0.AND.NODE(5,IE).NE.0) THEN
+         IF(NODE(6,IE).EQ.0 .AND.NODE(5,IE).NE.0) THEN
              NDUM=10
              ELSE
              NDUM=8 
