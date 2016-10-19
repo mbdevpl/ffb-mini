@@ -1085,7 +1085,7 @@ C      write(IUT6, "(/,'CONTAINING NODES IN EACH DIVISION')")
 C         write(IUT6, 1000) ii,jj,kk,
 C     *                     icount_in(ii,jj,kk),
 C     *                     icount_out(ii,jj,kk)
- 1000    format('(',I2,',',I2,',',I2,') -> Inner(',I3,'), Outer(',I3')')
+ 1000   format('(',I2,',',I2,',',I2,') -> Inner(',I3,'), Outer(',I3,')')
          ITOTAL = ITOTAL + icount_in(ii,jj,kk) +
      *                     icount_out(ii,jj,kk)
       enddo
