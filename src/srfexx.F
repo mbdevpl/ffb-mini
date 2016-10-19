@@ -104,7 +104,7 @@ C
 C
       DO 400 IE = 1 , NE
 C
-         IF(NESURF+6.GT.MESURF) THEN
+         IF(NESURF+6 .GT.MESURF) THEN
             WRITE(IUT0,*) ERMSGB
             WRITE(IUT0,*) EREXP3, MESURF
             IERR   = 1
