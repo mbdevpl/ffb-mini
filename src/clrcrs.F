@@ -23,11 +23,11 @@ C
               ICRS=ICRS+1
               IP2 =IPCRS(ICRS)
 C
-              IF(LFIX3D(IP).EQ.1.AND.IP.NE.IP2) A(ICRS)=0.0E0
-              IF(LFIX3D(IP).EQ.1.AND.IP.EQ.IP2) A(ICRS)=WEIGHT(IP)
+              IF(LFIX3D(IP).EQ.1 .AND.IP.NE.IP2) A(ICRS)=0.0E0
+              IF(LFIX3D(IP).EQ.1 .AND.IP.EQ.IP2) A(ICRS)=WEIGHT(IP)
 C
               ICRDIG=0
-              IF(LFIX3D(IP).NE.1.AND.IP.EQ.IP2) THEN
+              IF(LFIX3D(IP).NE.1 .AND.IP.EQ.IP2) THEN
                   ICRDIG = ICRS
               ENDIF
  2100     CONTINUE
