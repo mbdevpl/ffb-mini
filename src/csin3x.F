@@ -134,8 +134,8 @@ C
           IP2=NODE(LOCAL(2,IS,IETYPE),IE)
           IP3=NODE(LOCAL(3,IS,IETYPE),IE)
           IF((IETYPE.EQ.1            ).OR. ! TRI
-     *       (IETYPE.EQ.2.AND.IS.LE.4).OR.
-     *       (IETYPE.EQ.3.AND.IS.LE.2))THEN
+     *       (IETYPE.EQ.2 .AND.IS.LE.4).OR.
+     *       (IETYPE.EQ.3 .AND.IS.LE.2))THEN
              BX=(X(IP1)+X(IP2)+X(IP3))/3.0E0
              BY=(Y(IP1)+Y(IP2)+Y(IP3))/3.0E0
              BZ=(Z(IP1)+Z(IP2)+Z(IP3))/3.0E0
