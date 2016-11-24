@@ -227,9 +227,9 @@ subroutine makemesh_boun(ipx, ipy, ipz, file_boun)
 #ifdef MOVE_X_TOP
         if (ipx == npx .and. ix == n) then
 #elif defined(MOVE_Z_TOP)
-        if (ipz == npz .and. iz == n) then
+        !if (ipz == npz .and. iz == n) then
 #else /* MOVE_Y_TOP */
-        if (ipy == npy .and. iy == n) then
+        !if (ipy == npy .and. iy == n) then
 #endif
           iv_mw = iv_mw + 1
           iv_mwall(iv_mw) = iv
