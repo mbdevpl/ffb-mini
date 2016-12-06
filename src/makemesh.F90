@@ -82,7 +82,7 @@ subroutine makemesh_mesh(ipx, ipy, ipz, file_mesh)
   end do
   if (ie /= ne) stop 'ie /= ne'
 
-  open(fout, file=file_mesh, form="unformatted")
+  open(fout, file=file_mesh, form='unformatted')
 
   write(fout) '#U_GF_V1'
   write(fout) 1
@@ -501,7 +501,7 @@ subroutine makemesh_boun(ipx, ipy, ipz, file_boun)
   end if
   if (iv_i /= nv_int) stop 'iv_i /= nv_int'
 
-  open(fout, file=file_boun, form="unformatted")
+  open(fout, file=file_boun, form='unformatted')
   write(fout) '#U_GF_V1'
   write(fout) 1
 ! write(fout) '** CUBIC CAVITY FLOW **'

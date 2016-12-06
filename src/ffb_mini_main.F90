@@ -70,7 +70,7 @@ program ffb_mini
   end do
 
   write(file_parm, '("PARMLES3X.P", i4.4)') ip
-  open(U, file=file_parm, form="formatted")
+  open(U, file=file_parm, form='formatted')
   do line = 1, NLINE
     call substitute_param(param_lines(line), '%ntime%', ntime)
     call substitute_param(param_lines(line), '%isolp%', isolp)
