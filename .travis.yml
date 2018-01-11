@@ -1,0 +1,20 @@
+sudo: false
+language: c
+os: linux
+addons:
+  apt:
+    packages:
+      - gfortran
+      - libopenmpi-dev
+      - libhdf5-openmpi-dev
+
+compiler: gcc
+
+script:
+  - cd src
+  - make
+
+notifications:
+  slack:
+    secure: "LXWz4Oy7h0JIcW2ZhVDm9nNrhHMrecVkd3sa6DEVEsfEjnAhG4JWf/yu7GvcrRUjK2KaN0B5bJcdDSjiLnKPX7xr0tpxipfe7it3V2y/OIrgfnf6Rp1RkICr5b9I8V8+BBJDjLCZL96bi9Q2yv+9MpMJLX9oyhDOdVT2pzfi4BKPWAlFSyUnPeLAw4rBmWianOkhdU7ofcECVus4zPaKJNN+gKQIy6YOlfHyB0yc0riaAITujPnMZ35Xw65fCdxBBf0ptUyIGGgZv1jfcnHDp6veS4CG2Qv0rMjBtPIAluEE3PMmq1RSm/5Q2Q/pDI8Uiqww5eclEKf4bcFJUxE6OHw2ci0W53B7oEIscFiXmGLs7xUiBoTRECLt7NsuIYUqZA218qSrZmsBsCqWCZRXgEwhLQLOgvnlLU4oeusBjYM721hKxcPcnX9j9LGt3M3p853ezqIO/mKgZ6K0/e++zQLPmIUkkEVh9SKfbDbXJqvDz+icYO6SCuxETVvWkoo3UFalsoskBaRuTcNJGdlXVdiXfylbb6IjqqGl5cb0Q+FuXQvwtK6CZZIEqqBrZEJ8s2/Pm71KHbkg3+AlQlx9caA3JLtjWNcPjF0VM+aio9qUYY8Cxct7wzJ7JA7uzf2WMuk4B9rLQ2HRkhIwu4WTiKz1HytrVw6fK8DJ8A3d7BM="
+  email: false
