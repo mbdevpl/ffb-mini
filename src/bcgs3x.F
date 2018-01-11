@@ -7,11 +7,11 @@
 #include "timing.h"
       IMPLICIT NONE
 C
-CCCC  [INPUT:CONTROL PARAMETERS]     
+CCCC  [INPUT:CONTROL PARAMETERS]
       INTEGER*4 IMODE,IPART,NMAX,ME,N,NE,NP,IUT0
       REAL*4    EPS
 C
-CCCC  [INPUT:MATRIX]     
+CCCC  [INPUT:MATRIX]
       INTEGER*4 NCRS,NPP(NP),IPCRS(NCRS)
       REAL*4    AAAPC(NCRS),B(NP)
 C
@@ -28,7 +28,7 @@ CCC  [OUTPUT]
       INTEGER*4 NITR,IERR
       REAL*4    RESR
 C
-CCC  [WORK]    
+CCC  [WORK]
       REAL*4    RX(0:N,ME),RY(0:N,ME),WEIGHT(NP),
      *          R0(NP),RK(NP),PK(NP),APK(NP),ATK(NP),TK(NP),S0(NP)
 C
@@ -36,18 +36,18 @@ C     [FULL UNROLL]
       INTEGER*4 JUNROL
       INTEGER*4 NPPMAX,NCRS2,ITPCRS(NCRS2)
       REAL*4    TS(0:NP),TACRS(NCRS2)
-C      
+C
 C     [IN:MID NODE COLORING]
 C
-CCC  [LOCAL VARIABLE]    
+CCC  [LOCAL VARIABLE]
       INTEGER*4 MAXBUF,IP
       REAL*4 RKDOT,RKDOTA,BDOT,BDOTA,APDOT,APDOTA,
      *       ATTDOT,ATTDTA,QK,AT2DOT,AT2DTA,RKDOTP,RSDOT,RSDOTA,
      *       EPS0,RES,RESMIN,ALFA,BETA
       DATA EPS0 / 1.E-30 /
 C
-      CHARACTER*60 ERMSGC
-     & /' ## SUBROUTINE BCGST3X: FATAL     ERROR REPORT   ; RETURNED' /
+      CHARACTER*60 ERMSGC =
+     & (/' ## SUBROUTINE BCGST3X: FATAL     ERROR REPORT   ; RETURNED' /)
 C
        logical dummy
 C
@@ -71,7 +71,7 @@ C (1.1) CONTROL PARAMETERS
 C INT *4 IMODE        ; BEST SOLUTION STORING FUNCTION (1:ON,0:OFF)
 C INT *4 IPART        ; SUB-DOMAIN NUMBER THAT THIS TASK SHOULD TAKE/IS
 C                       TAKING CARE OF. IPART BEING SET ZERO MEANS THAT
-C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL 
+C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL
 C                       MODE.
 C INT *4 NMAX         ; MAXIMUM NUMBER OF ITERATIONS
 C INT *4 ME           ; MAX. NUMBER OF TOTAL ELEMENTS
@@ -95,7 +95,7 @@ C          CALLED.
 C
 C (1.3) INTER CONNECT DATA
 C INT *4 NDOM         ; NUMBER OF THE NERIBERING SUB-DOMAINS
-C INT *4 MBPDOM       ; THE MAXIMUM NUMBER OF THE INTER-CONNECT 
+C INT *4 MBPDOM       ; THE MAXIMUM NUMBER OF THE INTER-CONNECT
 C                       BOUNDARY NODES FOR ONE NEIBERING SUB-DOMAIN
 C INT *4 LDOM   (IDOM); NEIBERING SUB-DOMAIN NUMBER
 C INT *4 NBPDOM (IDOM); NUMBER OF INTER-CONNECT BOUNDARY NODES
@@ -139,7 +139,7 @@ C
 C
 CCC   2. SET INITIAL RESIDUAL VECTOR AND SEARCH-DIRECTION VECTOR
 C
-C   
+C
 C          OPERATION COUNTS:   36 FLOP /ELEMENT
 C          DATA LOADINGS   :   48 WORDS/ELEMENT
 C                           (  32 WORDS CONTIGUOUSLY,
@@ -196,7 +196,7 @@ C
 CCC   3. COMPUTE PRODUCT OF COEFFICIENT MATRIX AND SEARCH-DIRECTION VECTOR
 CCC      AND INNER PRODUCT OF COMPUTED PRODUCT AND SEARCH-DIRECTION VECTOR
 C
-C 
+C
  10   CONTINUE
 C
       NITR=NITR+1
@@ -245,19 +245,19 @@ C
         if (dummy .or. APDOT == 0.0E0) then
           dummy = .true.
           ALFA = 0.0E0
-        else 
+        else
           ALFA = RKDOT/APDOT
         end if
       end if
 #endif
 C
 C
-CCC   3.2 COMPUTE TK=RK-ALFA*APK     
+CCC   3.2 COMPUTE TK=RK-ALFA*APK
 C
 C
       DO 800 IP = 1 , NP
-          TK (IP) = RK(IP)-ALFA*APK(IP) 
-  800 CONTINUE 
+          TK (IP) = RK(IP)-ALFA*APK(IP)
+  800 CONTINUE
 C
 C
 CCC   3.3 COMPUTE ATK
@@ -307,12 +307,12 @@ C
       if (EPS > 0.0E0) then
         if (AT2DOT == 0.0E0) RETURN
         QK = ATTDOT/AT2DOT
-      else 
+      else
         if (dummy .or. AT2DOT == 0.0E0) then
           dummy = .true.
           QK = 0.0E0
           ALFA = 0.0E0
-        else 
+        else
           QK = ATTDOT/AT2DOT
         end if
       end if
@@ -327,8 +327,8 @@ C
       RKDOT  = 0.E0
       RSDOT  = 0.E0
       DO 1200 IP = 1 , NP
-          S  (IP) = S (IP)+ ALFA*PK(IP) + QK*TK (IP)   
-          RK (IP) = TK(IP)              - QK*ATK(IP) 
+          S  (IP) = S (IP)+ ALFA*PK(IP) + QK*TK (IP)
+          RK (IP) = TK(IP)              - QK*ATK(IP)
           RKDOT = RKDOT+WEIGHT(IP)*R0(IP)*RK(IP)
           RSDOT = RSDOT+WEIGHT(IP)*RK(IP)*RK(IP)
  1200 CONTINUE
@@ -354,7 +354,7 @@ C
 C
 C
 CCC   3.7 UPDATE SEARCH-DIRECTION VECTOR
-C     
+C
 C
 #if 0
       IF(QK     .EQ. 0.E0) RETURN
@@ -370,12 +370,12 @@ C
           dummy = .true.
           RKDOTP = 0.0E0
           BETA = 0.0E0
-        else 
+        else
           BETA = (ALFA/QK)*(RKDOT/RKDOTP)
         end if
       endif
 #endif
-C 
+C
       DO 1300 IP = 1 , NP
           PK (IP) = RK(IP)+BETA*(PK(IP)-QK*APK(IP))
  1300 CONTINUE
@@ -385,22 +385,22 @@ CCC   3.7 RETURN IF ITERATION NUMBER HAS REACHED THE GIVEN MAXIMUM NUMBER,
 CCC       OTHERWISE CONTINUE ITERATIONS UNTIL SOLUTION IS CONVERGED
 C
 C
-      IF(NITR.EQ.NMAX) THEN          
+      IF(NITR.EQ.NMAX) THEN
 C
           IF(IMODE.EQ.0) RETURN
 C
           DO 1400 IP = 1 ,  NP
               S(IP)=S0(IP)
- 1400      CONTINUE   
+ 1400      CONTINUE
           RES=RESMIN
           RETURN
-      END IF  
+      END IF
 C
       IF(RES.LT.RESMIN) THEN
           RESMIN=RES
           DO 1500 IP = 1 ,  NP
               S0(IP)=S(IP)
- 1500     CONTINUE   
+ 1500     CONTINUE
       ENDIF
       GO TO 10
 C

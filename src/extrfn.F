@@ -23,10 +23,10 @@ C     OUT
 
 C     WORK
       INTEGER*4 I,J,IE,IP,IBP,IDUM,IEBUF,IER,NDUM
-      CHARACTER*60 ERMSGC
-     & /' ## SUBROUTINE FDRELM: ERROR OCCURED             ; RETURNED' /
-      CHARACTER*60 ERMSG1
-     & /' ## SUBROUTINE FDRELM: FAILED TO REORDER NODE TBL; RETURNED' /
+      CHARACTER*60 ERMSGC =
+     & (/' ## SUBROUTINE FDRELM: ERROR OCCURED             ; RETURNED' /)
+      CHARACTER*60 ERMSG1 =
+     & (/' ## SUBROUTINE FDRELM: FAILED TO REORDER NODE TBL; RETURNED' /)
 
 C
 CC
@@ -52,16 +52,16 @@ C
       IF(NGRID.EQ.-1) THEN
          DO 1500 IE=1,NE
              LERFN(IE)=1
- 1500    CONTINUE   
+ 1500    CONTINUE
          GOTO 2700
       ENDIF
-C      
+C
       DO 2000 J=1,NGRID
 CC
 CC    FIND ELEMENTS ATTACHED TO REFINE BOUNDARY NODE
 CC
          DO 2100 IE=1,NE
-            IF(LERFN(IE).EQ.1) GOTO 2100 
+            IF(LERFN(IE).EQ.1) GOTO 2100
             DO 2200 I=1,N
                IP=NODE(I,IE)
                IF(IP.EQ.0)       GOTO 2200
@@ -119,14 +119,14 @@ C
          IF(NODE(6,IE).EQ.0 .AND.NODE(5,IE).NE.0) THEN
              NDUM=10
              ELSE
-             NDUM=8 
+             NDUM=8
          ENDIF
 C
          DO 3100 I=1,NDUM
             IER=IER+1
             LEACNV(IER)=IE
  3100    CONTINUE
-C 
+C
  3000 CONTINUE
 C
 CC

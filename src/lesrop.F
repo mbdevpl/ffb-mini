@@ -22,7 +22,7 @@ C======================================================================C
      *                  JPRESS,IVELIN,VELIN0,
      *                  U000,
      *                  EPSP,EPSREP,
-     *                  IWRITE,JGRID, 
+     *                  IWRITE,JGRID,
      *                  IERR)
       IMPLICIT REAL*4(A-H,O-Z)
 C
@@ -85,14 +85,14 @@ C
       DATA CKEYWD(47) / '#INLT__K' /
       DATA CKEYWD(48) / '#INLT_EP' /
       DATA CKEYWD(49) / '#RELAX_K' /
-      DATA CKEYWD(50) / '#RELAX_E' /      
-      DATA CKEYWD(51) / '#SETTURB' /      
+      DATA CKEYWD(50) / '#RELAX_E' /
+      DATA CKEYWD(51) / '#SETTURB' /
       DATA CKEYWD(52) / '#FIXFLOW' /
       DATA CKEYWD(53) / '#GRAVITY' /
       DATA CKEYWD(54) / '#INLTVEL' /
       DATA CKEYWD(55) / '#PRO_TBL' /
-      DATA CKEYWD(56) / '#EPSIL_K' /      
-      DATA CKEYWD(57) / '#EPSIL_E' /      
+      DATA CKEYWD(56) / '#EPSIL_K' /
+      DATA CKEYWD(57) / '#EPSIL_E' /
       DATA CKEYWD(58) / '#EPSRE_V' /
       DATA CKEYWD(59) / '#EPSRE_P' /
       DATA CKEYWD(60) / '#EPSRE_K' /
@@ -124,17 +124,17 @@ C
 C
       CHARACTER*60 CBUF,CBUF2
 C
-      CHARACTER*60 ERMSG1
-     & / ' ## THIS PARAMETER DOES NOT WORK IN THIS VERSION (FFB8.1)  ' /
+      CHARACTER*60 ERMSG1 =
+     & (/ ' ## THIS PARAMETER DOES NOT WORK IN THIS VERSION (FFB8.1)  ' /)
 C
-      CHARACTER*60 ERMSG2
-     & / ' ## THIS PARAMETER DOES NOT WORK IN MINIAPP                ' /
+      CHARACTER*60 ERMSG2 =
+     & (/ ' ## THIS PARAMETER DOES NOT WORK IN MINIAPP                ' /)
 C
-      CHARACTER*60 ERMSGB
-     & / ' ## SUBROUTINE LESROP: FATAL      ERROR OCCURENCE; RETURNED' /
+      CHARACTER*60 ERMSGB =
+     & (/ ' ## SUBROUTINE LESROP: FATAL      ERROR OCCURENCE; RETURNED' /)
 C
-      CHARACTER*60 EREXP1
-     & / ' AN ILLEGAL VALUE WAS SPECIFIED FOR CONTROL PARAMETER      ' /
+      CHARACTER*60 EREXP1 =
+     & (/ ' AN ILLEGAL VALUE WAS SPECIFIED FOR CONTROL PARAMETER      ' /)
 C
       CHARACTER*5 CONOFF(0:1)
       DATA CONOFF(0) /'OFF  '/
@@ -166,13 +166,13 @@ C          JCOLOR      ;RENUMBERING FLAG FOR COLORING     (0:OFF, 1:ON)
 C          JUNROL      ;FULL UNROLL FLAG FOR AX OPERATION (0:OFF, 1:ON)
 C
 C          NRFN        ;NUMBER OF REFINE  (DEFAULT=0)
-C                       IT MUST BE ZERO OR ONE IN THIS VERSION 
+C                       IT MUST BE ZERO OR ONE IN THIS VERSION
 C          IRFNMW      ;REFINED MESH AND BOUN FILE WILL BE OUTPUT
-C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)      
+C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)
 C          IRFNFF      ;READ IN FLOW DATA (U,V,W,P) WILL BE REFINED
-C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)      
+C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)
 C          NGRID       ;
-C                       
+C
       IERR = 0
 C
       EPSREP = -1.0
@@ -426,7 +426,7 @@ C
 C
           JGRID = 2
 C
-          WRITE(IUT6,*) 
+          WRITE(IUT6,*)
      *    ' LESROP: DOUBLE PRECISION GRID DATA WILL BE READ'
       ENDIF
 C
@@ -481,7 +481,7 @@ C
 C
           IRFNMW = 1
 C
-          WRITE(IUT6,*) 
+          WRITE(IUT6,*)
      *    ' LESROP: REFINED MESH AND B.C FILE WILL BE WRITTEN'
       ENDIF
 C
@@ -491,7 +491,7 @@ C
 C
           IRFNFF = 1
 C
-          WRITE(IUT6,*) 
+          WRITE(IUT6,*)
      *    ' LESROP: FLOW DATA READ IN WILL BE REFINED           '
       ENDIF
 C
@@ -510,7 +510,7 @@ C
           CBUF2 = CBUF(9:60)
           READ(CBUF2,*) MER,MPR
 C
-          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR GRID' 
+          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR GRID'
           WRITE(IUT6,*) ' LESROP: MER  =',MER
           WRITE(IUT6,*) ' LESROP: MPR  =',MPR
       ENDIF
@@ -522,7 +522,7 @@ C
           CBUF2 = CBUF(9:60)
           READ(CBUF2,*) MEPR,MPPR
 C
-          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR CNNECTIVITY DATA' 
+          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR CNNECTIVITY DATA'
           WRITE(IUT6,*) ' LESROP: MEPR =',MEPR
           WRITE(IUT6,*) ' LESROP: MPPR =',MPPR
       ENDIF
@@ -534,7 +534,7 @@ C
           CBUF2 = CBUF(9:60)
           READ(CBUF2,*) MBR,MBPR,MDOMR
 C
-          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR B.C. DATA' 
+          WRITE(IUT6,*) ' LESROP: MAX. NUMBER FOR B.C. DATA'
           WRITE(IUT6,*) ' LESROP: MBR  =',MBR
           WRITE(IUT6,*) ' LESROP: MBPR =',MBPR
           WRITE(IUT6,*) ' LESROP: MDOMR=',MDOMR
@@ -648,7 +648,7 @@ C
           WRITE(IUT6,*) ERMSG2
           GO TO 999
       ENDIF
-C 
+C
       IF(CBUF(1:8).EQ.CKEYWD(49)) THEN
           WRITE(IUT6,*) ' LESROP:'
           WRITE(IUT6,*) ' LESROP: "',CKEYWD(49), '" IS DETECTED.'
@@ -700,7 +700,7 @@ C
           VELIN0(1)=VELIN0(1)/U000
           VELIN0(2)=VELIN0(2)/U000
           VELIN0(3)=VELIN0(3)/U000
-      ENDIF 
+      ENDIF
 C
       IF(CBUF(1:8).EQ.CKEYWD(55)) THEN
           WRITE(IUT6,*) ' LESROP:'
@@ -845,12 +845,12 @@ C
 C
           WRITE(IUT6,*) ' LESROP: GF-WRITE-MODE IWRITE =',IWRITE
           IF(IWRITE.EQ.1) THEN
-              WRITE(IUT6,*) ' LESROP: ASCII-MODE' 
+              WRITE(IUT6,*) ' LESROP: ASCII-MODE'
           ELSE IF(IWRITE.EQ.2) THEN
               WRITE(IUT6,*) ' LESROP: UNFORMATED-MODE'
           ELSE IF(IWRITE.EQ.3) THEN
               WRITE(IUT6,*) ' LESROP: BINARY MODE'
-          ELSE 
+          ELSE
               IWRITE=2
               WRITE(IUT6,*) ' LESROP: UNFORMATED-MODE'
           ENDIF

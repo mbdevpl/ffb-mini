@@ -54,15 +54,15 @@ C
      *          SN(N1,NE),E(MELM),
      *          EX (MELM),EY (MELM),EZ (MELM),
      *          EXX(MELM),EYY(MELM),EZZ(MELM),
-     *          EXY(MELM),EXZ(MELM),EYZ(MELM) 
-C         
+     *          EXY(MELM),EXZ(MELM),EYZ(MELM)
+C
       DIMENSION NUMIP(NP),LPFIX(NP),LPINLT(NPINLT),
      *          LPWALL(NPWALL),LPSYMT(NPSYM2),
      *          UINLT(NPINLT),VINLT(NPINLT),WINLT (NPINLT),
      *          UWALL(NPWALL),VWALL(NPWALL),WWALL(NPWALL),
      *          XPSYMT(NPSYM2),YPSYMT(NPSYM2),ZPSYMT(NPSYM2),
      *          LDOM(NDOM),NBPDOM(NDOM),
-     *          IPSLF(MBPDOM,NDOM),IPSND(MBPDOM,NDOM) 
+     *          IPSLF(MBPDOM,NDOM),IPSND(MBPDOM,NDOM)
 C
       DIMENSION RX(0:N,ME),RY(0:N,ME),LFIX3D(NP),
      *          A(N1,N2,NE),UG(*),VG(*),WG(*),
@@ -106,11 +106,11 @@ C     [FULL UNROOL]
       INTEGER*4 JUNROL
       INTEGER*4 NPPMAX,NCRS2,ITPCRS(NCRS2)
       REAL*4    TS(0:NP),TACRS(NCRS2)
-C      
+C
 C     [IN:MID NODE COLORING]
 C
-      CHARACTER*60 ERMSGC
-     & /' ## SUBROUTINE VEL3D1: FATAL      ERROR REPORT   ; RETURNED' /
+      CHARACTER*60 ERMSGC =
+     & (/' ## SUBROUTINE VEL3D1: FATAL      ERROR REPORT   ; RETURNED' /)
 C
       INTEGER*4 IBCGS
       DATA IBCGS  / 0 /
@@ -207,7 +207,7 @@ C
 C        D. INTER-CONNECT BOUNDARY
 C          IPART       ; SUB-DOMAIN NUMBER THAT THIS TASK SHOULD TAKE/IS
 C                       TAKING CARE OF. IPART BEING SET ZERO MEANS THAT
-C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL 
+C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL
 C                       MODE.
 C
 C          LDOM  (IDOM); NEIBERING SUB-DOMAIN NUMBER
@@ -221,7 +221,7 @@ C                           NEIBERING SUB-DOMAIN, LDOM(IDOM)
 C          IPSND (IBP,IDOM); INTER-CONNECT BOUNDARY NODE NUMBER IN THE
 C                           SUB-DOMAIN THAT IS RECEIVING THE CALLING
 C                           TASK'S RESIDUALS.
-C          MBPDOM      ; THE MAXIMUM NUMBER OF THE INTER-CONNECT 
+C          MBPDOM      ; THE MAXIMUM NUMBER OF THE INTER-CONNECT
 C                       BOUNDARY NODES FOR ONE NEIBERING SUB-DOMAIN
 C
 C
@@ -235,12 +235,12 @@ C          IUT0        ; FILE NUMBER TO REPORT ERROR OCCURENCE
 C
 C       (2) OUTPUT
 C          RESU        ;RESIDUAL OF U-EQUATION
-C          RESV        ;RESIDUAL OF V-EQUATION 
+C          RESV        ;RESIDUAL OF V-EQUATION
 C          RESW        ;RESIDUAL OF W-EQUATION
 C
-C          NRNU        ;NUMBER OF U-EQUATION ITERATIONS 
-C          NRNV        ;NUMBER OF V-EQUATION ITERATIONS  
-C          NRNW        ;NUMBER OF W-EQUATION ITERATIONS 
+C          NRNU        ;NUMBER OF U-EQUATION ITERATIONS
+C          NRNV        ;NUMBER OF V-EQUATION ITERATIONS
+C          NRNW        ;NUMBER OF W-EQUATION ITERATIONS
 C
 C          IERR        ; RETURN CODE TO REPORT ERROR OCCURENCE
 C                   0 --- NORMAL TERMINATION
@@ -257,7 +257,7 @@ C                        COMPOSED OF INLET, WALL, SYMMETRIC AND OVERSET
 C                        BOUNDARY CONDITIONS NODES
 C          LWROK   (IP); WORK REGION TO MAKE 'LPFIX'
 C
-C          A   (I,J,IE); ELEMENT-WISE MATRIX COEFFICIENT WHICH INCLUDES 
+C          A   (I,J,IE); ELEMENT-WISE MATRIX COEFFICIENT WHICH INCLUDES
 C                        ALL THE ERMS AND WILL BE PASSED TO THE MATROX SOLVER
 C          APCRS  (ICRS); NODE-BASE MATRIX COEFFICIENT WHICH INCLUDES
 C                  ALL THE ERMS AND WILL BE PASSED TO THE MATRIX SOLVER
@@ -285,18 +285,18 @@ C
 CC    CRANCK-NICOLSON FOR DIFF. TERM
          CEB2 = 0.0E0
       ELSE
-CC    EULAR BACKWARD DIFF. TERM 
+CC    EULAR BACKWARD DIFF. TERM
          CEB2 = 1.0E0
-      END IF  
+      END IF
 C
-      IF(IFORM.EQ.2 .OR. IFORM.EQ.4 .OR. IFORM.EQ.5) THEN 
+      IF(IFORM.EQ.2 .OR. IFORM.EQ.4 .OR. IFORM.EQ.5) THEN
 C
       ELSE
          BTDCOE(1) = 0.0E0
          BTDCOE(2) = 0.0E0
          BTDCOE(3) = 0.0E0
          BTDCOE(4) = 0.0E0
-      END IF   
+      END IF
 C
       NEHEX=NEX(4)
       NHEX=NEX(8)
@@ -311,7 +311,7 @@ C
 C
 *POPTION INDEP(LFIX3D)
 C*$*ASSERT PERMUTATION ( LPINLT )
-!ocl norecurrence(LFIX3D)      
+!ocl norecurrence(LFIX3D)
       DO 1010 IBP = 1 , NPINLT
           LFIX3D(LPINLT(IBP))=1
           U(LPINLT(IBP)) = DEVLP1*UINLT(IBP)
@@ -321,7 +321,7 @@ C*$*ASSERT PERMUTATION ( LPINLT )
 C
 *POPTION INDEP(LFIX3D)
 C*$*ASSERT PERMUTATION ( LPWALL )
-!ocl norecurrence(LFIX3D)      
+!ocl norecurrence(LFIX3D)
       DO 1020 IBP = 1 , NPWALL
           LFIX3D(LPWALL(IBP))=1
  1020 CONTINUE
@@ -335,7 +335,7 @@ C
 *POPTION INDEP(LPFIX)
 C*$*ASSERT PERMUTATION ( LFIX3D )
       NPFIX=0
-!ocl norecurrence(LFIX3D)      
+!ocl norecurrence(LFIX3D)
       DO 1070 IP = 1 , NP
           IF(LFIX3D(IP).EQ.0) GO TO 1070
           NPFIX=NPFIX+1
@@ -454,7 +454,7 @@ C
      &           +VV*(UU*EXY(IELM8B)+VV*EYY(IELM8A)+WW*EYZ(IELM8A))
      &           +WW*(UU*EXZ(IELM8B)+VV*EYZ(IELM8B)+WW*EZZ(IELM8A)))*DTH
 C
-              AT =E(IELM1A)+E(IELM2A)+E(IELM3A)+E(IELM4A) 
+              AT =E(IELM1A)+E(IELM2A)+E(IELM3A)+E(IELM4A)
      *           +E(IELM5A)+E(IELM6A)+E(IELM7A)+E(IELM8A)
               AT1=DIJ(1,I)*AT
               AT2=DIJ(2,I)*AT
@@ -498,7 +498,7 @@ C
      *                 +A(5,I,IE)+A(6,I,IE)+A(7,I,IE)+A(8,I,IE)
 C
               CRHS1=AT1-AC1*(1.0E0-CEB1)-AD1*(1.0E0-CEB2)-ABTD1
-              CRHS2=AT2-AC2*(1.0E0-CEB1)-AD2*(1.0E0-CEB2)-ABTD2 
+              CRHS2=AT2-AC2*(1.0E0-CEB1)-AD2*(1.0E0-CEB2)-ABTD2
               CRHS3=AT3-AC3*(1.0E0-CEB1)-AD3*(1.0E0-CEB2)-ABTD3
               CRHS4=AT4-AC4*(1.0E0-CEB1)-AD4*(1.0E0-CEB2)-ABTD4
               CRHS5=AT5-AC5*(1.0E0-CEB1)-AD5*(1.0E0-CEB2)-ABTD5
@@ -525,7 +525,7 @@ C
           AR(IP)=A0(IP)
           IF (AR(IP).EQ.0.0E0) AR(IP)=1.0E0
       ENDDO
-C 
+C
 C
 C
 CVEL3D1 [ 5.] CAL. ACCELERATION TERMS IN RHS
@@ -534,7 +534,7 @@ C
       FX0=ACCELX
       FY0=ACCELY
       FZ0=ACCELZ
-!ocl norecurrence(WRK01,WRK02,WRK03)      
+!ocl norecurrence(WRK01,WRK02,WRK03)
       DO 1500 IE = 1,NE
           WRK01(IE)=FX0*DT
           WRK02(IE)=FY0*DT
@@ -550,7 +550,7 @@ C
 C*    TIME_START(TM_VEL3D1_OP2)
 #ifdef USE_DETAIL
       call start_collection('vel3d1_1642')
-#endif      
+#endif
       DO 1642 ICOLOR=1,NCOLOR(4)
 !ocl norecurrence(RHSU,RHSV,RHSW)
       DO 1641 ICPART=1,NCPART(ICOLOR,4)
@@ -612,7 +612,7 @@ CVEL3D1 [ 6.] MAKE CRS MATIRX
           RETURN
       ENDIF
 C
-C 
+C
 C SUPERIMPOSE DIAGONAL TERM (AR)
 C
       IDUM=1
@@ -683,7 +683,7 @@ C                           (  4  WORDS CONTIGUOUSLY,
 C                              0  WORDS BY 4-WORD STRIDE, AND
 C                              2  WORDS BY LIST )
 C           NPPAVE: AVE. NUMBER OF ADJACENT NODES AT A NODE
-C           --> 15 (TET), 20 (PRD,WED), 27(HEX.) 
+C           --> 15 (TET), 20 (PRD,WED), 27(HEX.)
 C
 C-----------------------------------------------------------------------
 C
@@ -804,7 +804,7 @@ C*$*ASSERT PERMUTATION ( LPFIX )
             RHSW(IP) = W(IP)
  6200    CONTINUE
 C
- 5000 CONTINUE   
+ 5000 CONTINUE
 C
       RETURN
       END

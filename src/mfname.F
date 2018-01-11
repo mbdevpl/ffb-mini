@@ -7,19 +7,19 @@ C                                                                      C
 C                                       WRITTEN BY C.KATO              C
 C                                                                      C
 C                                                                      C
-C Contact address: The University of Tokyo, FSIS project               C  
+C Contact address: The University of Tokyo, FSIS project               C
 C                                                                      C
 C======================================================================C
       SUBROUTINE MFNAME(FILEGL,FILEPT,IPART,IUT0,IERR)
       IMPLICIT REAL*4(A-H,O-Z)
       CHARACTER*60 FILEGL,FILEPT
 C
-      CHARACTER*60 ERMSGB
-     & / ' ## SUBROUTINE MFNAME: FATAL      ERROR OCCURENCE; RETURNED' /
-      CHARACTER*60 EREXP1
-     & / ' AN ILLEGAL SUB-DOMAIN NUMBER HAS BEEN SPECIFIED           ' /
-      CHARACTER*60 EREXP2
-     & / ' LENGTH OF THE PASSED FILE NAME EXCEEDED THE LIMIT OF 54   ' /
+      CHARACTER*60 ERMSGB =
+     & (/ ' ## SUBROUTINE MFNAME: FATAL      ERROR OCCURENCE; RETURNED' /)
+      CHARACTER*60 EREXP1 =
+     & (/ ' AN ILLEGAL SUB-DOMAIN NUMBER HAS BEEN SPECIFIED           ' /)
+      CHARACTER*60 EREXP2 =
+     & (/ ' LENGTH OF THE PASSED FILE NAME EXCEEDED THE LIMIT OF 54   ' /)
 C
 C
       CHARACTER* 6 INDEX
@@ -76,7 +76,7 @@ C
 C
 C DETERMINE LENGTH OF THE GLOBAL FILE NAME
 C
-C    
+C
 CC    DO 10 ICHAR = 1 , 54
       DO 10 ICHAR = 1 , 53
           IF(FILEGL(ICHAR:ICHAR).EQ.' ') THEN
@@ -94,7 +94,7 @@ C
 C
 C GENERATE SUB-DOMAIN INDEX
 C
-C    
+C
       IF(IPART.LE.9)    THEN
           WRITE(INDEX,'(5H.P000,I1)') IPART
           GO TO 30

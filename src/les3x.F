@@ -17,7 +17,7 @@ C======================================================================C
 C*    PROGRAM LES3X
       SUBROUTINE LES3X(FILEIN)
 #include "timing.h"
-      IMPLICIT NONE 
+      IMPLICIT NONE
 C
       CHARACTER*(*) FILEIN
 C
@@ -31,7 +31,7 @@ C
 C
       INTEGER*4 MER,MPR,MEPR,MPPR,MBR,MBPR,MDOMR
       DATA MER    /-1/
-      DATA MPR    /-1/ 
+      DATA MPR    /-1/
       DATA MEPR   /-1/
       DATA MPPR   /-1/
       DATA MBR    /-1/
@@ -70,7 +70,7 @@ CC [A.02] CONSTANTS REGARDING FILE ALLOCATIONS
 CC
       INTEGER*4 IACT,IRESV,IWRITE,INAME,
      *          ICAST,IDATA0,IALL,ISKIP,ISKIP1,ICHECK,
-     *          JGRID 
+     *          JGRID
       INTEGER*4 MAXPRN
       CHARACTER*30 NAME
       DATA IWRITE / 2 /
@@ -84,7 +84,7 @@ CC
       DATA ICHECK /999999/
       DATA JGRID  /1/
 C
-      INTEGER*4 MCOM,NCOMFL,NCOMST 
+      INTEGER*4 MCOM,NCOMFL,NCOMST
       PARAMETER ( MCOM = 22 )
       CHARACTER*60 COMGEN,COMFLE(MCOM),COMSET(MCOM)
       CHARACTER*60 FILEMS,FILEBC,FILEIF,FILEFF,FILEHS,
@@ -119,7 +119,7 @@ CC [A.04] CONSTANTS REGARDING NEAR-WALL TURBULENCE TREATMENTS
 CC
 CC
 CC [A.05] CONSTANTS REGARDING NUMERICAL METHODS
-CC   
+CC
 CC
 CC [A.06] CONSTANTS REGARDING ELEMENT INTEGRATION
 CC
@@ -130,13 +130,13 @@ CC
 CC [A.07] CONSTANTS REGARDING REFINER I.F.
 CC
 C          NRFN        ;NUMBER OF REFINE  (DEFAULT=0)
-C                       IT MUST BE ZERO OR ONE IN THIS VERSION 
+C                       IT MUST BE ZERO OR ONE IN THIS VERSION
 C          IRFNMW      ;REFINED MESH AND BOUN FILE WILL BE OUTPUT
-C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)      
+C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)
 C          IRFNFF      ;READ IN FLOW DATA (U,V,W,P) WILL BE REFINED
-C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)      
+C                       WHEN THIS PARAMETER IS ONE (DEFAULT=0)
 C          NGRID
-C         
+C
       INTEGER*4   NRFN,IRFNMW,IRFNFF,NGRID
       DATA NRFN   /0/
       DATA IRFNMW /0/
@@ -157,7 +157,7 @@ CC
       INTEGER*4 MCOLOR,MCPART
       PARAMETER(MCOLOR=1000,MCPART=10000)
       INTEGER*4 NCOLOR(4),NCPART(MCOLOR,4),LLOOP(MCPART,MCOLOR,4)
-C        
+C
       INTEGER*4,ALLOCATABLE::LPBTOA(:),LPATOB(:),LEBTOA(:),LEATOB(:)
       DATA JSORT  / 0/
       DATA JCOLOR / 0/
@@ -172,26 +172,26 @@ CC
 CC [A.11] CONSTANTS REGARDING ERROR TRAP
 CC
       INTEGER*4 IERR,IERRA,JESC,LERR(50)
-      DATA IERR /0/ 
+      DATA IERR /0/
       DATA JESC /0/
 C
-      CHARACTER*60 ERMSGB
-     * / ' ## PROGRAM    LES3X: FATAL      ERROR OCCURENCE; STOPPED ' /
-      CHARACTER*60 EREXP1
-     * / ' ALLOCATING FAILED                                        ' /
-      CHARACTER*60 EREXP2
-     * / ' READ-IN DATA ARE NOT CONSISTENT WITH THE MESH DATA        ' /
-      CHARACTER*60 EREXP5
-     * / ' NUMBER OF WALL BOUNDARY NODES          EXCEEDED LIMIT OF'   /
-      CHARACTER*60 EREXP6
-     * / ' FIELD MAXIMUM DIVERGENT                EXCEEDED LIMIT OF'   /
-      CHARACTER*60 EREXP7
-     * / ' NUMBER OF NON-ZEROS IN CRS FORMAT      EXCEEDED LIMIT OF'   /
-      CHARACTER*60 EREXP8
-     * / ' COORDINATE WHERE DIV. IS MAX::                            ' /
-      CHARACTER*60 ERMSGC
-     * / ' ## PROGRAM    LES3X : FATAL      ERROR REPORT   ; STOPPED ' /
-      CHARACTER*10 BLANK / ' ' /
+      CHARACTER*60 ERMSGB =
+     * (/ ' ## PROGRAM    LES3X: FATAL      ERROR OCCURENCE; STOPPED ' /)
+      CHARACTER*60 EREXP1 =
+     * (/ ' ALLOCATING FAILED                                        ' /)
+      CHARACTER*60 EREXP2 =
+     * (/ ' READ-IN DATA ARE NOT CONSISTENT WITH THE MESH DATA        ' /)
+      CHARACTER*60 EREXP5 =
+     * (/ ' NUMBER OF WALL BOUNDARY NODES          EXCEEDED LIMIT OF'   /)
+      CHARACTER*60 EREXP6 =
+     * (/ ' FIELD MAXIMUM DIVERGENT                EXCEEDED LIMIT OF'   /)
+      CHARACTER*60 EREXP7 =
+     * (/ ' NUMBER OF NON-ZEROS IN CRS FORMAT      EXCEEDED LIMIT OF'   /)
+      CHARACTER*60 EREXP8 =
+     * (/ ' COORDINATE WHERE DIV. IS MAX::                            ' /)
+      CHARACTER*60 ERMSGC =
+     * (/ ' ## PROGRAM    LES3X : FATAL      ERROR REPORT   ; STOPPED ' /)
+      CHARACTER*10 BLANK = (/ ' ' /)
 CC
 CC [A.12] CONSTANTS REGARDING FLOW RATE CONTROL
 CC
@@ -224,7 +224,7 @@ CC
 CC [B.02] ELEMENT'S SHAPE DEPENDENT CONSTANTS
 CC
       INTEGER*4 NTET,NPRD,NWED,NHEX
-      INTEGER*4 NSKIP1,NSKIP2,NSKIP3,NSKIP4 
+      INTEGER*4 NSKIP1,NSKIP2,NSKIP3,NSKIP4
       PARAMETER (NTET=4,NSKIP1=NTET*NTET)
       PARAMETER (NPRD=5,NSKIP2=NPRD*NPRD)
       PARAMETER (NWED=6,NSKIP3=NWED*NWED)
@@ -244,7 +244,7 @@ CC
      *       NPP(:),NPP2(:),
      *       NUMIP(:),LTAB(:,:,:)
       INTEGER*4 NPPMAX
-     
+
 C
       INTEGER*4 N2D,NS,NSP
       PARAMETER (N2D=4, NS=6, NSP=4)
@@ -273,7 +273,7 @@ CC
      *       XPSYMT(:),YPSYMT(:),ZPSYMT(:)
 C
       INTEGER*4 NPINLT,NPWALL,NPSYMT,NPFREE,NPCCL,
-     *          NPBODY,NPINT, 
+     *          NPBODY,NPINT,
      *          NDOM,
      *          NPMVB,NPSYM2
 C
@@ -296,7 +296,7 @@ C
       DATA NGAT  /0/
       DATA NSCT  /0/
 CC
-CC [FLUID FORCE OBJECT] 
+CC [FLUID FORCE OBJECT]
 CC
 CC [B.05] ARRAYS FOR SAVING TIME HISTORY
 CC
@@ -304,7 +304,7 @@ CC [B.06] WORK REGION (MATRIX SOLVER)
 CC
       INTEGER*4 NCRS,NCRS2
       INTEGER*4,ALLOCATABLE:: IPCRS(:),ITPCRS(:)
-      REAL*4,ALLOCATABLE:: 
+      REAL*4,ALLOCATABLE::
      *       AWRK(:,:,:),ACRS (:),TACRS(:)
 CC
 CC [B.07] WORK REGION (REFINER I.F.)
@@ -425,7 +425,7 @@ C        'LES3X' IS A GENERAL-PURPOSE FINITE ELEMENT PROGRAM THAT
 C       CALCULATES INCOMPRESSIBLE UNSTEADY FLOWS IN ARBITRARILY-SHAPED
 C       GEOMETRIES. THE GOVERNING EQUATIONS ADOPTED FOR THE COMPUTATION
 C       ARE UNSTEADY INCOMPRESSIBLE NAVIER-STOKES EQUATIONS
-C       REPRESENTED IN THE CARTETIAN COORDINATES SYSTEM. IT SUPPORTS 
+C       REPRESENTED IN THE CARTETIAN COORDINATES SYSTEM. IT SUPPORTS
 C       MULTI ELEMENT TYPE.
 C
 C
@@ -695,7 +695,7 @@ C
 C        H. OVERSET BOUNDARY NODES
 C
 C        I. FLUID FORCE OBJECT (FFO)
-C          
+C
 C
 C       (8) TIME HISTORY DATA
 C
@@ -823,7 +823,7 @@ C
      *            U000,
      *            EPSP,EPSREP,
      *            IWRITE,JGRID,
-     *            IERR) 
+     *            IERR)
 C
       if (JPRESS .ne. 2) then
           write(IUT6,*)  '## MINIAPP MUST BE SET "#PRS_ELM"'
@@ -836,12 +836,12 @@ C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) ' ** CHECKING SIZE OF MESH DATA **'
       IACT     = 1
-      IONE=1 
+      IONE=1
       IF(JGRID.EQ.1) THEN
           CALL GFALL(IUT0,IUT6,IUTMS,FILEMS,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP1,IERR,
      *               '*GRID_3D *NODE_3D !',
      *               NAME,IONE,NP,FRBUF,FRBUF,FRBUF,
@@ -851,7 +851,7 @@ C
           CALL GFALL(IUT0,IUT6,IUTMS,FILEMS,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP1,IERR,
      *               '*GRID_3D%D *NODE_3D !',
      *               NAME,IONE,NP,FRBUF,FRBUF,FRBUF,
@@ -919,7 +919,7 @@ C
       MPWALL=MB
       MPINT =MB
       MPBODY=MB
-C  
+C
       SIZEAL = 0.E0
 C
       SIZE   = (10*FLOAT(MP)+(2+2*MRCM)*FLOAT(ME))*WORD
@@ -946,7 +946,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR ELEMENT SHAPE '
@@ -967,10 +967,10 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
-      WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR CONNECTIVITY'  
+      WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR CONNECTIVITY'
       SIZE   = ((MEP*2+MPP+4)*FLOAT(MP)+81*FLOAT(ME))*WORD
       SIZEAL = SIZEAL+SIZE
       WRITE(IUT6,'(A12,F8.2," MB ALLOCATED")') " CONNECT   :",SIZE
@@ -990,7 +990,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR B.C.'
@@ -1032,7 +1032,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR WORK-1'
@@ -1047,7 +1047,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR WORK-2'
@@ -1072,7 +1072,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) 'ALLOCATING VARIABLE FOR WORK-3'
@@ -1114,7 +1114,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
 #ifndef NO_REFINER
       WRITE(IUT6,*) BLANK
@@ -1135,7 +1135,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 #endif
 C
       WRITE(IUT6,*) BLANK
@@ -1167,7 +1167,7 @@ C
           CALL GFALL(IUT0,IUT6,IUTMS,FILEMS,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP,IERR,
      *               '*GRID_3D *NODE_3D !',
      *               NAME,MP,NP,X,Y,Z,
@@ -1187,12 +1187,12 @@ C
           CALL GFALL(IUT0,IUT6,IUTMS,FILEMS,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP,IERR,
      *               '*GRID_3D%D *NODE_3D !',
      *               NAME,MP,NP,XD,YD,ZD,
      *               NAME,ME,N0,NE,NDUM,NODWK1,
-     *               ICHECK)     
+     *               ICHECK)
 CCTT  //NORMALIZATION
           DO 925 IP=1, NP
               XD(IP)=XD(IP)/DBLE(D000)
@@ -1228,7 +1228,7 @@ C
       CALL GFALL(IUT0,IUT6,IUTBC,FILEBC,
      *           MCOM,NCOMFL,COMFLE,
      *           MCOM,NCOMST,COMSET,
-     *           IACT,IWRITE,INAME,IRESV,  
+     *           IACT,IWRITE,INAME,IRESV,
      *           ICAST,IDATA0,IALL,ISKIP,IERR,
      *           '*BC_INLT *BC_IV3D *BC_MWAL *BC_WV3D *BC_WALL
      *            *BC_SYMT *BC_FREE *BC_CYCL *BC_BODY *BC_INTR !',
@@ -1242,7 +1242,7 @@ C
      *           NAME,MB,NPCCL ,LPCCL1,LPCCL2,
      *           NAME,MB,NPBODY,LPBODY,
      *           NAME,MB,NPINT, LPINT1,LPINT2,LPINT3,
-     *           ICHECK)     
+     *           ICHECK)
 C
 CCTT  //NORMALIZE
 C
@@ -1263,8 +1263,8 @@ C
               UINLT(IBP)=VELIN0(1)
               VINLT(IBP)=VELIN0(2)
               WINLT(IBP)=VELIN0(3)
-          ENDDO 
-      ENDIF 
+          ENDDO
+      ENDIF
 C
       CALL ERRCHK(IUT6,IPART,1,IERR,IERRA)
       IF(IERRA.NE.0) THEN
@@ -1278,7 +1278,7 @@ C
  1400 CONTINUE
 C
       DO 1401 IBP = 1 , NPWALL
-          IP=LPWALL(IBP) 
+          IP=LPWALL(IBP)
           LWRK02(IP)=1
  1401 CONTINUE
 C
@@ -1313,7 +1313,7 @@ C
           CALL GFALL(IUT0,IUT6,IUTIF,FILEIF,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP,IERR,
      *               '*TIME_PS *STEP_PS *VELO_3D *PRES_3E
      *                *PRES_3D !',
@@ -1365,7 +1365,7 @@ C
 C
               WRITE(IUT6,*) 'PRESSURE READ IS DEFINEDED AT ELEMENT'
 CCC           WRITE(IUT0,*) 'ONLY NODAL PRESSURE IS AVAILABLE : STOP'
-CCC           GOTO 9999           
+CCC           GOTO 9999
           ENDIF
 C
           WRITE(IUT6,*) ' DONE!'
@@ -1392,7 +1392,7 @@ C
              WRITE(IUT6,*) "IRFN / LLAYER :", IRFN, LLAYER(IRFN)
  1599     CONTINUE
       ENDIF
-C     
+C
       DO 1500 IRFN= 1 , NRFN
          WRITE(IUT6,*) BLANK
          WRITE(IUT6,*) ' ** REFINING MESH, B.C. FLOW **'
@@ -1412,9 +1412,9 @@ C
      *               MB,NPINT ,LPINT1,LPINT2,LPINT3,
      *               IPART,
      *               MDOM,LDOM,NBPDOM,NDOM,IPSLF,IPSND,MBPDOM,
-     *               WRK01,WRK02,WRK03,LWRK06, 
+     *               WRK01,WRK02,WRK03,LWRK06,
      *               DWRK3,LWRK01,LWRK02,WRK04,NODWK1,NODWK2,NODWK3,
-     *               RX,RY,NPB0, 
+     *               RX,RY,NPB0,
      *               NPB1,LPB1,XPB1,YPB1,ZPB1,
      *               NPB2,LPB2,XPB2,YPB2,ZPB2,
      *               LWRK03,LWRK04,
@@ -1530,7 +1530,7 @@ C
       CALL LESSFX(LOCAL,NODE,MB,NE,NP,N0,N1,NS,NSP,N2D,
      *            XD,YD,ZD,
      *            NPSYMT,NPSYM2,LPSYMT,XPSYMT,YPSYMT,ZPSYMT,
-     *            NPCCL ,LPCCL1,LPCCL2,   
+     *            NPCCL ,LPCCL1,LPCCL2,
      *            IPART ,MPINT ,NPINT ,LPINT1,LPINT2,LPINT3,
      *            MDOM  ,NDOM  ,LDOM  ,NBPDOM,MBPDOM,IPSLF,IPSND,
      *            LPBTOA,IUT0,IUT6,IERR,RX,RY,
@@ -1570,7 +1570,7 @@ C     - INITIALIZE -
               DNXYZ(2,J,IE)=0.0E0
               DNXYZ(3,J,IE)=0.0E0
  2510     CONTINUE
- 2500 CONTINUE   
+ 2500 CONTINUE
 C
       NELM=0
       NELM=NELM+NSKIP1*NETET
@@ -1600,7 +1600,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) ' ** INTEGRATING ELEMENT MATRICES **'
@@ -1615,7 +1615,7 @@ C
           EXY(IELM)=0.0E0
           EXZ(IELM)=0.0E0
           EYZ(IELM)=0.0E0
- 2520 CONTINUE   
+ 2520 CONTINUE
 C
       MELM=NELM+1
       CALL ELM3DX(MGAUSS,IGAUSH,
@@ -1642,7 +1642,7 @@ C
             DNXYZ(3,J,IE)=WRKN(J+N1*(IE-1))
  2545    CONTINUE
  2540 CONTINUE
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
 C
 C            <<<<< LUMP MASS MATRIX >>>>>
@@ -1676,7 +1676,7 @@ C
               GO TO 9999
           ENDIF
           WRITE(IUT6,*) ' DONE!'
-      ENDIF   
+      ENDIF
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,*) ' ** MAKING NEIBERING LISTS **'
@@ -1723,7 +1723,7 @@ C
           WRITE(IUT0,*) EREXP1
           GO TO 9999
       ENDIF
-      WRITE(IUT6,*) 'DONE' 
+      WRITE(IUT6,*) 'DONE'
 C
       WRITE(IUT6,*) BLANK
       WRITE(IUT6,'(A12,F8.2," MB ALLOCATED")') " TOTAL    :",SIZEAL
@@ -1762,7 +1762,7 @@ C
       IF (NTIME.EQ.0) GOTO 5100
 C
       WRITE(IUT6,*) BLANK
-      WRITE(IUT6,*) ' ** CALCULATING INITIAL ELEMENT VALUES **'      
+      WRITE(IUT6,*) ' ** CALCULATING INITIAL ELEMENT VALUES **'
 C
       CALL ICALEL(N1,NE,NP,NODE,U,V,W,UE,VE,WE)
 C
@@ -1774,7 +1774,7 @@ C     <<<<<<< TIME INTEGRATION LOOP START >>>>>>>
 C
 C
       WRITE(IUT6,*) BLANK
-      WRITE(IUT6,*) ' ** TIME CALCULATING INITIAL ELEMENT VALUES **'      
+      WRITE(IUT6,*) ' ** TIME CALCULATING INITIAL ELEMENT VALUES **'
 C
       ITIME = 0
 C
@@ -1782,7 +1782,7 @@ C
       WRITE(IUT6,*) ' ** NOW ENTERING TIME MARCH LOOP **'
       TIME_START(TM_MAIN_LOOP)
       DO 5000
-C     
+C
           CALL DDSYNC
 C
           ISTEP = ITIME   +NTIMEP
@@ -1996,12 +1996,12 @@ C
           CALL GFALL(IUT0,IUT6,IUTMR,FILEMR,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP,IERR,
      *               '*GRID_3D%D *NODE_3D !',
      *               NAME,MP,NP,XD,YD,ZD,
      *               NAME,ME,N0,NE,NDUM,NODWK1,
-     *               ICHECK)     
+     *               ICHECK)
           IF(IERR.NE.0) THEN
               WRITE(IUT0,*) BLANK
               WRITE(IUT0,*) ERMSGC
@@ -2016,7 +2016,7 @@ C
           CALL GFALL(IUT0,IUT6,IUTBR,FILEBR,
      *               MCOM,NCOMFL,COMFLE,
      *               MCOM,NCOMST,COMSET,
-     *               IACT,IWRITE,INAME,IRESV,  
+     *               IACT,IWRITE,INAME,IRESV,
      *               ICAST,IDATA0,IALL,ISKIP,IERR,
      *               '*BC_INLT *BC_IV3D *BC_MWAL *BC_WV3D *BC_WALL
      *                *BC_SYMT *BC_FREE *BC_CYCL *BC_BODY *BC_INTR !',
@@ -2030,7 +2030,7 @@ C
      *               NAME,MB,NPCCL ,LPCCL1,LPCCL2,
      *               NAME,MB,NPBODY,LPBODY,
      *               NAME,MB,NPINT, LPINT1,LPINT2,LPINT3,
-     *               ICHECK)     
+     *               ICHECK)
           WRITE(IUT6,*) ' DONE!'
 C
       ENDIF
@@ -2051,7 +2051,7 @@ C
          CALL GFALL(IUT0,IUT6,IUTFF,FILEFF,
      *              MCOM,4,COMFLE,
      *              MCOM,0,COMSET,
-     *              IACT,IWRITE,INAME,IRESV,  
+     *              IACT,IWRITE,INAME,IRESV,
      *              ICAST,IDATA0,IALL,ISKIP,IERR,
      *              '*TIME_PS *STEP_PS *VELO_3D *PRES_3E
      *               *PRES_3D !',
@@ -2065,9 +2065,9 @@ C
          CALL GFALL(IUT0,IUT6,IUTFF,FILEFF,
      *              MCOM,4,COMFLE,
      *              MCOM,0,COMSET,
-     *              IACT,IWRITE,INAME,IRESV,  
+     *              IACT,IWRITE,INAME,IRESV,
      *              ICAST,IDATA0,IALL,ISKIP,IERR,
-     *              '*TIME_PS *STEP_PS *VELO_3D 
+     *              '*TIME_PS *STEP_PS *VELO_3D
      *               *PRES_3D !',
      *              NAME,TIMEW,
      *              NAME,ISTEP,
@@ -2082,7 +2082,7 @@ C
          CALL GFALL(IUT0,IUT6,IUTFR,FILEFR,
      *              MCOM,4,COMFLE,
      *              MCOM,0,COMSET,
-     *              IACT,IWRITE,INAME,IRESV,  
+     *              IACT,IWRITE,INAME,IRESV,
      *              ICAST,IDATA0,IALL,ISKIP,IERR,
      *              '*TIME_PS *STEP_PS *VELO_3D *PRES_3E
      *               *PRES_3D !',
@@ -2091,7 +2091,7 @@ C
      *              NAME,MP,NP,U,V,W,
      *              NAME,ME,NE,P,
      *              NAME,MP,NP,PN,
-     *              ICHECK)     
+     *              ICHECK)
       ENDIF
       WRITE(IUT6,*) ' DONE! '
 C

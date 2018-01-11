@@ -19,14 +19,14 @@ C======================================================================C
       DIMENSION LPNT(NPNT),LOCAL(NSP,NS,4),NODE(N1,NE),
      1          LESURF(MLST,MESURF),IWRK(MWRK)
 C
-      CHARACTER*60 ERMSGB
-     & /' ## SUBROUTINE SRFEXX: FATAL      ERROR OCCURENCE; RETURNED' /
-      CHARACTER*60 EREXP1
-     & /' THE FIRST DIMENSION OF OUTPUT LIST PASSED IS NOT SUFFICIENT'/
-      CHARACTER*60 EREXP2
-     & /' THE PASSED NODAL POINT LIST CONTAINS ILLEGAL NODE NUMBER   '/
-      CHARACTER*60 EREXP3
-     & /' NUMBER OF SURFACE ELEMENTS EXCEEDED LIMIT OF               '/
+      CHARACTER*60 ERMSGB =
+     & (/' ## SUBROUTINE SRFEXX: FATAL      ERROR OCCURENCE; RETURNED' /)
+      CHARACTER*60 EREXP1 =
+     & (/' THE FIRST DIMENSION OF OUTPUT LIST PASSED IS NOT SUFFICIENT'/)
+      CHARACTER*60 EREXP2 =
+     & (/' THE PASSED NODAL POINT LIST CONTAINS ILLEGAL NODE NUMBER   '/)
+      CHARACTER*60 EREXP3 =
+     & (/' NUMBER OF SURFACE ELEMENTS EXCEEDED LIMIT OF               '/)
 C
       DIMENSION LIST1(4),LIST2(4)
 C
@@ -38,16 +38,16 @@ C                                           CODED BASED ON 'SURFEX'
 C
 C     ARGUMENT LISTINGS
 C       (1) INPUT
-C          LPNT  (IPNT); NODE NUMBERS    FOR SURFACE EXTRACTION 
-C          NPNT        ; NUMBER OF NODES FOR SURFACE EXTRACTION 
+C          LPNT  (IPNT); NODE NUMBERS    FOR SURFACE EXTRACTION
+C          NPNT        ; NUMBER OF NODES FOR SURFACE EXTRACTION
 C          LOCAL (I,IS); NODE NUMBER TABLE DEFINING ELEMENT SURFACES
 C          NODE  (I,IE); NODE NUMBER TABLE BASED ON ELEMENT
 C          NEP     (IP); NUMBER OF ADJACENT ELEMENTS TO NODE IP
 C          NE          ; NUMBER OF TOTAL ELEMENTS
 C          NP          ; NUMBER OF TOTAL    NODES
 C          MESURF      ; THE MAXIMUM NUMBER  OF SURFACE ELEMENTS
-C          MLST        ; THE FIRST DIMENSION OF ARRAY LESURF 
-C                        MLST SHOULD BE 2 IN THIS VERSION   
+C          MLST        ; THE FIRST DIMENSION OF ARRAY LESURF
+C                        MLST SHOULD BE 2 IN THIS VERSION
 C          IUT0        ; FILE NUMBER TO WRITE  ERROR MESSAGE
 C          IERR        ; RETURN CODE WHOSE VALUE WILL BE EITHER
 C                   0 --- INDICATING SUCCESSFUL TERMINATION
@@ -79,7 +79,7 @@ C
           IF(LPNT(IPNT).LT.1 .OR. LPNT(IPNT).GT.NP) THEN
               WRITE(IUT0,*) ERMSGB
               WRITE(IUT0,*) EREXP2
-              WRITE(IUT0,*) 
+              WRITE(IUT0,*)
      &        ' *** POINT NO. = ',IPNT,' *** NODE NO. = ',LPNT(IPNT)
               IERR = 1
           ENDIF
@@ -114,7 +114,7 @@ C
          IF(     NODE(8,IE).GE.1) THEN ! HEX
             IETYPE = 4
             NSURF  = 6
-         ELSE IF(NODE(6,IE).GE.1) THEN ! PRS  
+         ELSE IF(NODE(6,IE).GE.1) THEN ! PRS
             IETYPE = 3
             NSURF  = 5
          ELSE IF(NODE(5,IE).GE.1) THEN ! PYR
@@ -123,7 +123,7 @@ C
          ELSE                          ! TET
             IETYPE = 1
             NSURF  = 4
-         ENDIF   
+         ENDIF
 C
          DO 401 IS=1,NSURF
             DO 402 I=1,N2D
@@ -136,7 +136,7 @@ C
             NESURF = NESURF +1
             LESURF(1,NESURF) = IE
             LESURF(2,NESURF) = IS
- 401     CONTINUE   
+ 401     CONTINUE
 C
  400  CONTINUE
 C
@@ -158,7 +158,7 @@ C
             IETYPE1 = 2
          ELSE                           ! TET
             IETYPE1 = 1
-         ENDIF   
+         ENDIF
          LIST1(1) = NODE(LOCAL(1,IS1,IETYPE1),IE1)
          LIST1(2) = NODE(LOCAL(2,IS1,IETYPE1),IE1)
          LIST1(3) = NODE(LOCAL(3,IS1,IETYPE1),IE1)
@@ -166,7 +166,7 @@ C
             LIST1(4) = NODE(LOCAL(4,IS1,IETYPE1),IE1)
          ELSE
             LIST1(4) = 0
-         ENDIF   
+         ENDIF
          DO 600 J2=J1+1,NESURF
             IF(IWRK(J2).EQ.1) GOTO 600
             IE2=LESURF(1,J2)
@@ -187,7 +187,7 @@ C
                LIST2(4) = NODE(LOCAL(4,IS2,IETYPE2),IE2)
             ELSE
                LIST2(4) = 0
-            ENDIF   
+            ENDIF
 C
             IMATCH=0
             CALL MATCH4(LIST1,LIST2,IMATCH)
@@ -195,9 +195,9 @@ C
                IWRK(J1)=1
                IWRK(J2)=1
                GOTO 610
-            ENDIF   
+            ENDIF
  600     CONTINUE
- 610  CONTINUE   
+ 610  CONTINUE
 C
       NBUF=NESURF
       NESURF=0
@@ -207,6 +207,6 @@ C
           LESURF(1,NESURF)=LESURF(1,J)
           LESURF(2,NESURF)=LESURF(2,J)
   700 CONTINUE
-C   
+C
       RETURN
       END

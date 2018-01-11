@@ -14,11 +14,11 @@ C=======================================================================
 C
       INTEGER NEHEX
 C
-      CHARACTER*60 ERMSGC
-     & /' ## SUBROUTINE E2PLST: FATAL      ERROR REPORT   ; RETURNED'/
+      CHARACTER*60 ERMSGC =
+     & (/' ## SUBROUTINE E2PLST: FATAL      ERROR REPORT   ; RETURNED'/)
 C
 C     CALCULATE INDEX TABLE OF COMPRESSED ROW STRAGE (CRS) FORMAT
-C     FOR OBTAINING NODE-BASE MATRIX COEFFICIENT 
+C     FOR OBTAINING NODE-BASE MATRIX COEFFICIENT
 C     FROM ELEMENT-BASE MATRIX COEFFICIENT
 C                                              2009.12.01 RIST
 C
@@ -60,8 +60,8 @@ C
       NEHEX=NEX(4)
 C
 CCYY
-CCYY [2] Make Matrix and Table 
-CCYY 
+CCYY [2] Make Matrix and Table
+CCYY
       DO 2200 IE=1,NE
         DO 2000 J1=1,M8
           DO 2100 J2=1,M8
@@ -71,7 +71,7 @@ CCYY
  2200 CONTINUE
 C-----------------------------------------------------------------------
 CCYY 4000: NODE LOOP
-CCYY 4100: ADJACENT ELEMENT LOOP  
+CCYY 4100: ADJACENT ELEMENT LOOP
 CCYY 4200: LOCAL NODE LOOP
 CCYY 4300: ADJACENT NODE LOOP FOR SEARCH
 C

@@ -10,7 +10,7 @@
      *                  MDOM,LDOM,NBPDOM,NDOM,IPSLF,IPSND,MBPDOM,
      *                  UFIX,VFIX,WFIX,LPFRM,
      *                  CRD,LWRK01,LWRK02,WRK04,NDRFN,NDORG,NODEBK,
-     *                  RX,RY,NPB0, 
+     *                  RX,RY,NPB0,
      *                  NPB1,LPB1,XPB1,YPB1,ZPB1,
      *                  NPB2,LPB2,XPB2,YPB2,ZPB2,
      *                  ITYPOR,ITYPRF,IUT6,IUT0,IERR)
@@ -53,7 +53,7 @@ C
       DATA KHEX /12/
 C
       INTEGER*4 NBOUN
-      PARAMETER(NBOUN=7) 
+      PARAMETER(NBOUN=7)
       INTEGER*4 LBPRTY(NBOUN)
       DATA      LBPRTY( 1) /  4 /   ! INLET
       DATA      LBPRTY( 2) /  6 /   ! MOVING-WALL
@@ -77,9 +77,9 @@ C     [WORK]
       INTEGER*4 NODED(8),LEACNV(ME)
       INTEGER*4 LWRK01(ME),LWRK02(MP)
       INTEGER*4 WRK04(MP),NDRFN(ME*8),NDORG(NE*8),NODEBK(8,NE)
-      INTEGER(KIND=1) ITYPOR(ME),ITYPRF(ME) 
+      INTEGER(KIND=1) ITYPOR(ME),ITYPRF(ME)
 C
-C     [PARAMETER]       
+C     [PARAMETER]
       INTEGER*4 NOFSTP,NOFSTE
       DATA NOFSTP /1/
       DATA NOFSTE /1/
@@ -95,25 +95,25 @@ C     [COUNTER]
      *          IP1,IP2,IP3,IP4,IP5,IP6,IP7,IP8,
      *          NE1,NE2
 C
-      CHARACTER*60 ERMSGC
-     & /' ## SUBROUTINE LRFNMS: ERROR OCCURED             ; RETURNED' /
+      CHARACTER*60 ERMSGC =
+     & (/' ## SUBROUTINE LRFNMS: ERROR OCCURED             ; RETURNED' /)
 CC      CHARACTER*60 ERMSG1
 CC     & /' ## SUBROUTINE LRFNMS: LIST ERROR AT DDCOM0      ; RETURNED' /
 CC    CHARACTER*60 ERMSG2
 CC   & /' ## SUBROUTINE RFNMSH: CANNOT OBTAIN PARENT NODE ; RETURNED' /
-      CHARACTER*60 ERMSG3
-     & /' ## SUBROUTINE LRFNMS: INSUFFICIENT MEMORY       ; RETURNED' /
-      CHARACTER*60 ERMSG4
-     & /' ## SUBROUTINE LRFNMS: INVARIT NODE TABLE        ; RETURNED' /
-      CHARACTER*60 ERMSG5
-     & /' ## SUBROUTINE LRFNMS: INVARIT ELEMENT TYPE      ; RETURNED' /
-      CHARACTER*60 ERMSG6
-     & /' ## SUBROUTINE LRFNMS: INVARIT O.S. FRANE NUMBER ; RETURNED' /
+      CHARACTER*60 ERMSG3 =
+     & (/' ## SUBROUTINE LRFNMS: INSUFFICIENT MEMORY       ; RETURNED' /)
+      CHARACTER*60 ERMSG4 =
+     & (/' ## SUBROUTINE LRFNMS: INVARIT NODE TABLE        ; RETURNED' /)
+      CHARACTER*60 ERMSG5 =
+     & (/' ## SUBROUTINE LRFNMS: INVARIT ELEMENT TYPE      ; RETURNED' /)
+      CHARACTER*60 ERMSG6 =
+     & (/' ## SUBROUTINE LRFNMS: INVARIT O.S. FRANE NUMBER ; RETURNED' /)
 C
 C
 C     ARGUMENT LISTINGS
-C     ME     (IN    ); MAX. NUMBER OF TOTAL ELEMENTS 
-C     MP     (IN    ); MAX. NUMBER OF TOTAL    NODES 
+C     ME     (IN    ); MAX. NUMBER OF TOTAL ELEMENTS
+C     MP     (IN    ); MAX. NUMBER OF TOTAL    NODES
 C     NE     (IN/OUT);      NUMBER OF TOTAL ELEMENTS
 C     NP     (IN/OUT);      NUMBER OF TOTAL    NODES
 C     N1     (IN    ); DIMENSION OF 'NODE'
@@ -122,7 +122,7 @@ C     X      (IN/OUT); X-COORDINATES OF NODES
 C     Y      (IN/OUT); Y-COORDINATES OF NODES
 C     Z      (IN/OUT); Y-COORDINATES OF NODES
 C
-C   BOUNDARY CONDITIONS  
+C   BOUNDARY CONDITIONS
 C
 C    B. WALL BOUNDARY
 C     MPWALL (IN    ); MAX. NUMBER OF WALL BOUNDARY NODES
@@ -158,7 +158,7 @@ C
 C    G. INTER-CONNECT BOUNDARY
 C     IPART   (IN    ); SUB-DOMAIN NUMBER THAT THIS TASK SHOULD TAKE/IS
 C                       TAKING CARE OF. IPART BEING SET ZERO MEANS THAT
-C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL 
+C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL
 C                       MODE.
 C      LDOM   (IN    ); NEIBERING SUB-DOMAIN NUMBER
 C      NBPDOM (IN/OUT); NUMBER OF INTER-CONNECT BOUNDARY NODES
@@ -171,7 +171,7 @@ C                       NEIBERING SUB-DOMAIN, LDOM(IDOM)
 C      IPSND  (WORK  ); INTER-CONNECT BOUNDARY NODE NUMBER IN THE
 C                       SUB-DOMAIN THAT IS RECEIVING THE CALLING
 C                       TASK'S RESIDUALS.
-C      MBPDOM (IN    ); THE MAXIMUM NUMBER OF THE INTER-CONNECT 
+C      MBPDOM (IN    ); THE MAXIMUM NUMBER OF THE INTER-CONNECT
 C                       BOUNDARY NODES FOR ONE NEIBERING SUB-DOMAIN
 C
 C
@@ -204,7 +204,7 @@ C
             RETURN
          ENDIF
       ENDIF
-C     
+C
 CC
 CCHY [2] EXTRACT ELEMENTS TO BE REFINED
 CC
@@ -233,21 +233,21 @@ CC
          VFIX(IP)=0.0
          WFIX(IP)=0.0
          LPFRM(IP)=0
- 1000 CONTINUE   
+ 1000 CONTINUE
 C
       DO 1100 IB=1,NPINLT
          IP=LPINLT(IB)
          UFIX(IP)=UINLT(IB)
          VFIX(IP)=VINLT(IB)
          WFIX(IP)=WINLT(IB)
- 1100 CONTINUE   
+ 1100 CONTINUE
 C
       DO 1200 IB=1,NPWALL
          IP=LPWALL(IB)
          UFIX(IP)=UWALL(IB)
          VFIX(IP)=VWALL(IB)
          WFIX(IP)=WWALL(IB)
- 1200 CONTINUE   
+ 1200 CONTINUE
 C
 CC
 CCHY [4] INITIALIZE OF REFINER
@@ -256,7 +256,7 @@ CC
       WRITE(IUT6,*) ' **LRFNMS** : REFINER INITIALIZATION'
       CALL RCAPINITREFINER(NOFSTP,NOFSTE)
 CC
-CCHY [5] SET COORDINATES TO REFINER 
+CCHY [5] SET COORDINATES TO REFINER
 CC
       WRITE(IUT6,*)
       WRITE(IUT6,*) ' **LRFNMS** : SET COORDINATES TO REFINER'
@@ -267,7 +267,7 @@ CC
  2000 CONTINUE
       CALL RCAPSETNODE64(NP,CRD,-1,0)
 CC
-CCHY [6] SET B.C. NODES TO REFINER 
+CCHY [6] SET B.C. NODES TO REFINER
 CC
 CC
 CCHY [6.1] B.C. GROUP-1
@@ -280,25 +280,25 @@ C
          NB=NB+1
          LWRK01(NB) = LPINLT(IB)
          LWRK02(NB) = LBPRTY(1)
- 3000 CONTINUE  
+ 3000 CONTINUE
 C
       DO 3010 IB = 1 , NPWALL
          NB=NB+1
          LWRK01(NB) = LPWALL(IB)
          LWRK02(NB) = LBPRTY(3)
- 3010 CONTINUE  
+ 3010 CONTINUE
 C
       DO 3020 IB = 1 , NPSYMT
          NB=NB+1
          LWRK01(NB) = LPSYMT(IB)
          LWRK02(NB) = LBPRTY(4)
- 3020 CONTINUE  
+ 3020 CONTINUE
 C
       DO 3040 IB = 1 , NPFREE
          NB=NB+1
          LWRK01(NB) = LPFREE(IB)
          LWRK02(NB) = LBPRTY(5)
- 3040 CONTINUE  
+ 3040 CONTINUE
 C
       CBUF = BGNAME(1)//CHAR(0)
       CALL RCAPAPPENDBNODEVARINT(CBUF,NB,LWRK01,LWRK02)
@@ -309,7 +309,7 @@ CC
       DO 3100 IB = 1 , NPBODY
          LWRK01(IB) = LPBODY(IB)
          LWRK02(IB) = LBPRTY(7)
- 3100 CONTINUE  
+ 3100 CONTINUE
 C
       CBUF = BGNAME(2)//CHAR(0)
       CALL RCAPAPPENDBNODEVARINT(CBUF,NPBODY,LWRK01,LWRK02)
@@ -330,9 +330,9 @@ C
             CALL RCAPAPPENDBNODEGROUP(CBUF,NBPDOM(IDOM),LWRK01)
  3200    CONTINUE
          WRITE(IUT6,*) ' **LRFNMS** : SET B.C. NODES (3)',NB
-      ENDIF    
+      ENDIF
 CC
-CCHY [7] SET NODE TABLE TO REFINER 
+CCHY [7] SET NODE TABLE TO REFINER
 CC
       DO 4000 IE=1,NE
          DO 4010 I=1,8
@@ -366,7 +366,7 @@ C
             IETYPE=RCAP_PYRAMID
 CC
 CC NOTE THAT DEFINITION OF PYRMID NODE TABLE IS DIFFERENT
-CC IN FFB AND REVOCAP_REFINER        
+CC IN FFB AND REVOCAP_REFINER
 CC
             NDORG(J+1)=NODE(5,IE)
             NDORG(J+2)=NODE(1,IE)
@@ -386,7 +386,7 @@ CC
             WRITE(IUT0,*) ERMSG4
             IERR=1
             RETURN
-         ENDIF  
+         ENDIF
 C
          ITYPOR(IE)=IETYPE
  4100 CONTINUE
@@ -448,7 +448,7 @@ C
          ELSE IF(IETYPE.EQ.RCAP_PYRAMID) THEN
 CC
 CC NOTE THAT DEFINITION OF PYRMID NODE TABLE IS DIFFERENT
-CC IN FFB AND REVOCAP_REFINER        
+CC IN FFB AND REVOCAP_REFINER
 CC
             NODE(1,IE)=NDRFN(J+2)
             NODE(2,IE)=NDRFN(J+3)
@@ -474,7 +474,7 @@ CC
             WRITE(IUT0,*) ERMSG5
             IERR=1
             RETURN
-         ENDIF  
+         ENDIF
 C
  5000 CONTINUE
 CC
@@ -543,7 +543,7 @@ C
                IERR=1
                GOTO 6050
             ELSE
-               LPINLT(NPINLT)=IP 
+               LPINLT(NPINLT)=IP
             ENDIF
          ENDIF
 C
@@ -554,7 +554,7 @@ C
                IERR=1
                GOTO 6050
             ELSE
-               LPWALL(NPWALL)=IP 
+               LPWALL(NPWALL)=IP
             ENDIF
          ENDIF
 C
@@ -565,7 +565,7 @@ C
                IERR=1
                GOTO 6050
             ELSE
-               LPSYMT(NPSYMT)=IP 
+               LPSYMT(NPSYMT)=IP
             ENDIF
          ENDIF
 C
@@ -576,7 +576,7 @@ C
                IERR=1
                GOTO 6050
             ELSE
-               LPFREE(NPFREE)=IP 
+               LPFREE(NPFREE)=IP
             ENDIF
          ENDIF
 C
@@ -649,18 +649,18 @@ CC
 CCHY [12.3] B.C. GROUP-3
 CC
       IF(IPART.GE.1) THEN
-C     
+C
          DO 6200 IDOM=1,NDOM
 C
             IF (IRFN.EQ.1) THEN
                NPB1(IDOM)=0
                DO 6300 IB=1,NBPDOM(IDOM)
                   NPB1(IDOM)=NPB1(IDOM)+1
-                  IP=IPSLF(IB,IDOM)               
+                  IP=IPSLF(IB,IDOM)
                   LPB1(NPB1(IDOM),IDOM)=IP
                   XPB1(NPB1(IDOM),IDOM)=X(IP)
                   YPB1(NPB1(IDOM),IDOM)=Y(IP)
-                  ZPB1(NPB1(IDOM),IDOM)=Z(IP)              
+                  ZPB1(NPB1(IDOM),IDOM)=Z(IP)
  6300          CONTINUE
             ENDIF
 C
@@ -708,7 +708,7 @@ CC
 C
             DO 6700 IB2=1,NPB2(IDOM)
                LWRK01(IB2)=0
- 6700       CONTINUE      
+ 6700       CONTINUE
 C
             NPB0(IDOM)=0
             DO 6800 IB1=1,NPB1(IDOM)
@@ -782,8 +782,8 @@ CC
          J = RCAPGETORIGINAL(IP,NODED)
 C
          IF(J.EQ.KSEG) THEN
-            IP1=NODED(1)  
-            IP2=NODED(2)  
+            IP1=NODED(1)
+            IP2=NODED(2)
             UFIX(IP)=0.5E0*(UFIX(IP1)+UFIX(IP2))
             VFIX(IP)=0.5E0*(VFIX(IP1)+VFIX(IP2))
             WFIX(IP)=0.5E0*(WFIX(IP1)+WFIX(IP2))
@@ -795,10 +795,10 @@ C
             W (IP)=0.5E0*(W (IP1)+W (IP2))
             PN(IP)=0.5E0*(PN(IP1)+PN(IP2))
          ELSE IF(J.EQ.KQUD) THEN
-            IP1=NODED(1)  
-            IP2=NODED(2)  
-            IP3=NODED(3)  
-            IP4=NODED(4)  
+            IP1=NODED(1)
+            IP2=NODED(2)
+            IP3=NODED(3)
+            IP4=NODED(4)
             UFIX(IP)=0.25E0*(UFIX(IP1)+UFIX(IP2)+UFIX(IP3)+UFIX(IP4))
             VFIX(IP)=0.25E0*(VFIX(IP1)+VFIX(IP2)+VFIX(IP3)+VFIX(IP4))
             WFIX(IP)=0.25E0*(WFIX(IP1)+WFIX(IP2)+WFIX(IP3)+WFIX(IP4))
@@ -812,14 +812,14 @@ C
             W (IP)=0.25E0*(W (IP1)+W (IP2)+W (IP3)+W (IP4))
             PN(IP)=0.25E0*(PN(IP1)+PN(IP2)+PN(IP3)+PN(IP4))
          ELSE IF(J.EQ.KHEX) THEN
-            IP1=NODED(1)  
-            IP2=NODED(2)  
-            IP3=NODED(3)  
-            IP4=NODED(4)  
-            IP5=NODED(5)  
-            IP6=NODED(6)  
-            IP7=NODED(7)  
-            IP8=NODED(8)  
+            IP1=NODED(1)
+            IP2=NODED(2)
+            IP3=NODED(3)
+            IP4=NODED(4)
+            IP5=NODED(5)
+            IP6=NODED(6)
+            IP7=NODED(7)
+            IP8=NODED(8)
             IF(IRFNFF.NE.1) GOTO 7000
             U (IP)=0.125E0*( U (IP1)+U (IP2)+U (IP3)+U (IP4)
      *            +U (IP5)+U (IP6)+U (IP7)+U (IP8))
@@ -831,9 +831,9 @@ C
      *            +PN(IP5)+PN(IP6)+PN(IP7)+PN(IP8))
 CC
 CC            NOTE THAT
-CC            NEW NODES FROM ELEMENT CENTER NEVER BECOME B.C. NODES 
+CC            NEW NODES FROM ELEMENT CENTER NEVER BECOME B.C. NODES
 CC
-         ELSE 
+         ELSE
             WRITE(IUT0,*) 'J=',J
             WRITE(IUT0,*) ERMSG5
             IERR=1
@@ -846,17 +846,17 @@ C
          UINLT(IB)=UFIX(IP)
          VINLT(IB)=VFIX(IP)
          WINLT(IB)=WFIX(IP)
- 7100 CONTINUE   
+ 7100 CONTINUE
 C
       DO 7200 IB=1,NPWALL
          IP=LPWALL(IB)
          UWALL(IB)=UFIX(IP)
          VWALL(IB)=VFIX(IP)
          WWALL(IB)=WFIX(IP)
- 7200 CONTINUE   
+ 7200 CONTINUE
 C
 CC
-CCHY [14] CLEAR 
+CCHY [14] CLEAR
 CC
       CALL rcapClearRefiner()
 CC

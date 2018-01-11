@@ -15,7 +15,7 @@ C======================================================================C
       SUBROUTINE LESSFX(LOCAL,NODE,MB,NE,NP,N,N1,NS,NSP,N2D,
      *                  X,Y,Z,
      *                  NPSYMT,NPSYM2,LPSYMT,XPSYMT,YPSYMT,ZPSYMT,
-     *                  NPCCL ,LPCCL1,LPCCL2,   
+     *                  NPCCL ,LPCCL1,LPCCL2,
      *                  IPART ,MPINT ,NPINT ,LPINT1,LPINT2,LPINT3,
      *                  MDOM  ,NDOM  ,LDOM  ,NBPDOM,MBPDOM,IPSLF,IPSND,
      *                  LPBTOA,IUT0,IUT6,IERR,RX,RY,
@@ -23,7 +23,7 @@ C======================================================================C
      *                  IWRK,IWRK2)
       IMPLICIT NONE
       INTEGER*4 LOCAL,NODE,MB,NE,NP,N,N1,NS,NSP,N2D,
-     *          NPSYMT,NPSYM2,LPSYMT,NPCCL ,LPCCL1,LPCCL2,   
+     *          NPSYMT,NPSYM2,LPSYMT,NPCCL ,LPCCL1,LPCCL2,
      *          IPART ,MPINT ,NPINT ,LPINT1,LPINT2,LPINT3,
      *          MDOM  ,NDOM  ,LDOM  ,NBPDOM,MBPDOM,IPSLF,IPSND,
      *          LPBTOA,IUT0,IUT6,IERR,MWRK,IWRK,IWRK2
@@ -43,8 +43,8 @@ C
 C
       DIMENSION LPBTOA(NP)
 C
-      CHARACTER*60 ERMSGC
-     & / ' ## SUBROUTINE LESSFX: FATAL      ERROR REPORT   ; RETURNED' /
+      CHARACTER*60 ERMSGC =
+     & (/ ' ## SUBROUTINE LESSFX: FATAL      ERROR REPORT   ; RETURNED' /)
 C
       REAL*4    EPS
       DATA      EPS  /1.0E-10/
@@ -94,14 +94,14 @@ C          LPSYMT (IBP); SYMMETRIC BOUNDARY NODES
 C
 C          IPART       ; SUB-DOMAIN NUMBER THAT THIS TASK SHOULD TAKE/IS
 C                       TAKING CARE OF. IPART BEING SET ZERO MEANS THAT
-C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL 
+C                       THE PROGRAM SHOULD RUN/IS RUNNING IN SERIAL
 C                       MODE.
 C          NPINT       ; NUMBER OF INTER-CONNECT BOUNDARY NODES
 C          LPINT1 (IBP); INTER-CONNECT BOUNDARY NODES
 C          LPINT2 (IBP); CORRESPONDING SUB-DOMAIN NUMBERS
 C          LPINT3 (IBP); NODE NUMBER IN THE CORRESPONDING SUB-DOMAINS
 C          MDOM        ; MAX. NUMBER OF THE NEIBERING SUB-DOMAINS
-C          MBPDOM      ; THE MAXIMUM NUMBER OF THE INTER-CONNECT 
+C          MBPDOM      ; THE MAXIMUM NUMBER OF THE INTER-CONNECT
 C                       BOUNDARY NODES FOR ONE NEIBERING SUB-DOMAIN
 C
 C          IUT0        ; FILE NUMBER TO WRITE  ERROR MESSAGE
@@ -214,7 +214,7 @@ C
 C
 C
 C NOTES; SYMMETRIC SURFACE EXTRACTION AND THEIR NORMAL CALCULATION ARE
-C       TEMPORARILY BE NEEDED FOR CALCULATING SYMMETRIC NODE NORMAL 
+C       TEMPORARILY BE NEEDED FOR CALCULATING SYMMETRIC NODE NORMAL
 C       VECTORS.
 C
 C
@@ -253,24 +253,24 @@ C
           IS = IWRK2(2,IESYMT)
           IF(     NODE(8,IE).GE.1) THEN ! HEX
              IETYPE = 4
-          ELSE IF(NODE(6,IE).GE.1) THEN ! PRS  
+          ELSE IF(NODE(6,IE).GE.1) THEN ! PRS
              IETYPE = 3
           ELSE IF(NODE(5,IE).GE.1) THEN ! PYR
              IETYPE = 2
           ELSE                          ! TET
              IETYPE = 1
-          END IF   
+          END IF
           IF(LOCAL(4,IS,IETYPE).GE.1) THEN ! QUADRILATERAL
              NNPS = 4
           ELSE                             ! TRIANGLE
              NNPS = 3
-          ENDIF   
+          ENDIF
           DO 410 I = 1 , NNPS
               IP = NODE(LOCAL(I,IS,IETYPE),IE)
               WRK4(IP) = WRK4(IP)+WRK1(IESYMT)
               WRK5(IP) = WRK5(IP)+WRK2(IESYMT)
               WRK6(IP) = WRK6(IP)+WRK3(IESYMT)
-  410     CONTINUE 
+  410     CONTINUE
   420 CONTINUE
 C
 C SUPERIMPOSE NEIGHBORING DOMAIN NORMAL VECTORS
