@@ -5,6 +5,7 @@ addons:
   apt:
     packages:
       - gfortran
+      - openmpi-bin
       - libopenmpi-dev
       - libhdf5-openmpi-dev
 
@@ -13,6 +14,7 @@ compiler: gcc
 script:
   - cd src
   - make
+  - make test
 
 notifications:
   slack:
